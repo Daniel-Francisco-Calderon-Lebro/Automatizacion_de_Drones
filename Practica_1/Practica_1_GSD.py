@@ -4,16 +4,19 @@ import cv2 as cv
 img = cv.imread(r'Practica_1\DJI_0850.JPG', 1)
 print(img.shape)
 
-altura_edificio = 12000 # Altura en mm
+altura_edificio = 10000 # Altura en mm
 h = 60000 - altura_edificio # Altura en mm del Dron
 imw = 4000 # Ancho de la imagen en pixeles
+imh = 3000 # Alto de la imagen en pixeles
 Sw = 6.3 #Ancho del sensor de la camara en mm
 Sh = 4.72 # Alto del sensor de la camara en mm
 F = 4.44 # Distancia focal en mm
 
 # Calcular GSD
 gsd_mm = ((h/imw) * (Sw/F)) # mm/pixel en horizontal
-print("GSD: ", gsd_mm, "mm/pixel")
+gsd_mm_vertical = ((h/imh) * (Sh/F)) # mm/pixel en vertical
+print("GSD: ", gsd_mm, "mm/pixel en horizontal")
+print("GSD: ", gsd_mm_vertical, "mm/pixel en vertical")
 gsd_cm = gsd_mm/10 # cm/pixel en horizontal
 print("GSD: ", gsd_cm, "cm/pixel")
 gsd_m = gsd_mm/1000 # m/pixel en horizontal
@@ -50,8 +53,8 @@ print(f'Medida vertical: {medida_vertical_m} m')
 
 # Calcular Area
 area_mm = medida_horizontal_mm * medida_vertical_mm
-area_cm = area_mm / 10000
-area_m = area_mm / 10000000
+area_cm = area_mm / 1000
+area_m = area_mm / 1000000
 print(f"Area: {area_m} m^2")
 
 # Calcular volumen
@@ -63,11 +66,13 @@ print(f"Volumen: {volumen_m} m^3")
 #ventana normal
 cv.namedWindow("recorte", cv.WINDOW_NORMAL)
 cv.rectangle(recorte, (0, 0), (largo, ancho), (0, 255, 0), 32)
-cv.putText(recorte, "Largo: " + str(round(float(medida_horizontal_m), 2)) + " m", (1000, 120), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
-cv.putText(recorte, "Ancho: " + str(round(float(medida_vertical_m), 2)) + " m", (20, 700), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
+# cv.putText(recorte, "Largo: " + str(round(float(medida_horizontal_m), 2)) + " m", (1000, 120), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
+# cv.putText(recorte, "Ancho: " + str(round(float(medida_vertical_m), 2)) + " m", (20, 700), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
+cv.putText(recorte, "Alto: " + str(round(float(altura_edificio)/1000, 2)) + " m", (20, 500), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
 cv.putText(recorte, "Area: " + str(round(float(area_m), 2)) + " m^2", (100, 1000), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
 cv.putText(recorte, "Volumen: " + str(round(float(volumen_m), 2)) + " m^3", (20, 1170), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
-
+# cv.putText(recorte, "Pixeles largo: " + str(largo), (1000, 110), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
+# cv.putText(recorte, "Pixeles ancho: " + str(ancho), (20, 500), cv.FONT_HERSHEY_SIMPLEX, 4, (0, 255, 255), 16)
 # Ventana de imagenes
 cv.namedWindow("imagen", cv.WINDOW_NORMAL)
 cv.imshow("imagen", img)
