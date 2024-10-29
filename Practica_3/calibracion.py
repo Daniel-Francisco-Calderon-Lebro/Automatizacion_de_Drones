@@ -67,52 +67,7 @@ if __name__ == '__main__':
     with DroneBlocksSimulatorContextManager(simulator_key=sim_key) as drone:
         drone.get_battery()
         drone.takeoff()
-        drone.fly_up(95, 'cm')#178
-        time.sleep(0.5)
-        drone.fly_forward(120, 'cm')
-        drone.yaw_left(90)
-
-        time.sleep(0.5)
-        drone.fly_forward(x, 'cm')
-        drone.yaw_right(90)
-
-        drone.fly_up(44, 'cm' )
-        time.sleep(0.5)
-        drone.fly_down(20, 'cm')
-        time.sleep(0.5)
-        drone.fly_forward(150, 'cm' )
-        drone.yaw_right(90)
-
-        time.sleep(0.5)
-
-        drone.fly_forward(x, 'cm' )
-        drone.yaw_left(90)
-
-        drone.fly_down(40, 'cm' )
-        time.sleep(0.5)
-        drone.fly_forward(150, 'cm')
-        time.sleep(0.5)
-        drone.yaw_left(90)
-        time.sleep(0.5)
-        drone.fly_forward(x, 'cm')
-        time.sleep(0.5)
-        drone.yaw_right(90)
-        time.sleep(0.5)
-        drone.fly_down(30, 'cm')
-        time.sleep(0.5)
-        drone.fly_forward(150, 'cm')
-        drone.yaw_right(90)
-
-        drone.fly_forward(x, 'cm')
-        drone.yaw_right(90)
-
-
-        drone.fly_up(106, 'cm')
-        time.sleep(0.5)
-        drone.fly_forward(500, 'cm')
-        drone.fly_forward(100, 'cm')
-        drone.yaw_right(180)
 
         drone.land()
 
-        
+            
