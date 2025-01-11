@@ -11,7 +11,7 @@ me.send_rc_control(0, 0, 25, 0)
 time.sleep(2.2)
 w, h = 360, 240
 fbRange = [6200, 6800]
-pid = [0.4, 0.4, 0]
+pid = [0.4, 0.4, 0.001]
 pError = 0
 
 def findFace(img):
